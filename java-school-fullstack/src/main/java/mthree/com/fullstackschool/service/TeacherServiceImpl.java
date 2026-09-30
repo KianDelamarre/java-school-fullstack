@@ -12,13 +12,19 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
 
     //YOUR CODE STARTS HERE
 
+    TeacherDao teacherDao;
+
+     @Autowired
+    public TeacherServiceImpl(TeacherDao teacherDao){
+        this.teacherDao = teacherDao;
+    }
 
     //YOUR CODE ENDS HERE
 
     public List<Teacher> getAllTeachers() {
         //YOUR CODE STARTS HERE
 
-        return null;
+        return teacherDao.getAllTeachers();
 
         //YOUR CODE ENDS HERE
     }
@@ -27,7 +33,18 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
         //YOUR CODE STARTS HERE
 
 
-            return null;
+        Teacher teacher = new Teacher();
+
+        try{
+            teacher = teacherDao.findTeacherById(id);
+        }
+        catch (DataAccessException ex){
+            teacher.setTeacherFName("Teacher Not Found");
+            teacher.setTeacherLName("Teacher Not Found");
+        }
+
+
+        return teacher;
 
         //YOUR CODE ENDS HERE
     }
@@ -36,7 +53,14 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
         //YOUR CODE STARTS HERE
 
 
-        return null;
+        if(teacher.getTeacherFName().isEmpty()){
+            teacher.setTeacherFName("First Name blank, teacher NOT added");
+        }
+        else if( teacher.getTeacherLName().isEmpty()){
+            teacher.setTeacherLName("Last Name blank, teacher NOT added");
+        }
+
+        return teacherDao.createNewTeacher(teacher);
 
         //YOUR CODE ENDS HERE
     }
@@ -45,7 +69,15 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
         //YOUR CODE STARTS HERE
 
 
-        return null;
+        if(id!=teacher.getTeacherId()){
+            teacher.setTeacherFName("IDs do not match, teacher not updated");
+            teacher.setTeacherLName("IDs do not match, teacher not updated");
+            return teacher;
+        }
+
+        teacherDao.updateTeacher(teacher);
+
+        return teacher;
 
         //YOUR CODE ENDS HERE
     }
@@ -53,7 +85,9 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
     public void deleteTeacherById(int id) {
         //YOUR CODE STARTS HERE
 
+        teacherDao.deleteTeacher(id);
 
+        System.out.println("Teacher ID: + id + deleted");
 
         //YOUR CODE ENDS HERE
     }

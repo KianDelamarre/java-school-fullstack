@@ -35,7 +35,7 @@ public class TeacherDaoImpl implements TeacherDao {
 
             statement.setString(1, teacher.getTeacherFName());
             statement.setString(2, teacher.getTeacherLName());
-            statement.setString(2, teacher.getDept());
+            statement.setString(3, teacher.getDept());
             return statement;
         }, keyHolder);
 
@@ -77,7 +77,7 @@ public class TeacherDaoImpl implements TeacherDao {
                 "tFName = ?, " +
                 "tLName = ?, " +
                 "dept = ? " +
-                "WHERE sid = ?";
+                "WHERE tid = ?";
 
         jdbcTemplate.update(sql,
                 t.getTeacherFName(),
