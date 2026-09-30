@@ -24,7 +24,7 @@ public class CourseDaoImpl implements CourseDao {
     @Override
     public Course createNewCourse(Course course) {
         //YOUR CODE STARTS HERE
-        final String sql = "INSERT INTO course (courseCode, courseDesc) VALUES (?,?)";
+        final String sql = "INSERT INTO course (courseCode, courseDesc, teacherId) VALUES (?,?,?)";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -34,6 +34,7 @@ public class CourseDaoImpl implements CourseDao {
                     Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, course.getCourseName());
             statement.setString(2, course.getCourseDesc());
+            statement.setInt(3, course.getTeacherId());
             return statement;
         }, keyHolder);
 
@@ -71,8 +72,8 @@ public class CourseDaoImpl implements CourseDao {
 
         final String sql = "UPDATE course SET " +
                 "courseCode = ?, " +
-                "courseDesk = ? " +
-                "teacherId = ?" +
+                "courseDesc = ?, " +
+                "teacherId = ? " +
                 "WHERE cid = ?";
 
         jdbcTemplate.update(sql,

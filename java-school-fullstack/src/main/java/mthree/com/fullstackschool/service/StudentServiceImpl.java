@@ -1,7 +1,6 @@
 package mthree.com.fullstackschool.service;
 
 import mthree.com.fullstackschool.dao.StudentDao;
-import mthree.com.fullstackschool.model.Course;
 import mthree.com.fullstackschool.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -94,6 +93,10 @@ public class StudentServiceImpl implements StudentServiceInterface {
         if(student.getStudentLastName().equals("Student Not Found")){
             System.out.println("Student not found");
         }
+
+        studentDao.deleteStudentFromCourse(studentId, courseId);
+
+        System.out.println("Student: " +studentId+ " deleted from course: "+ courseId);
 
 
 
