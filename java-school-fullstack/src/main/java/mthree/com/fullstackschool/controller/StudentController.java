@@ -62,7 +62,7 @@ public class StudentController {
     public void deleteStudentFromCourse(@PathVariable int studentId, @PathVariable int courseId) {
         //YOUR CODE STARTS HERE
 
-
+        studentServiceImpl.deleteStudentFromCourse(studentId, courseId);
 
         //YOUR CODE ENDS HERE
     }
@@ -71,7 +71,7 @@ public class StudentController {
     public void addStudentToCourse(@PathVariable int studentId, @PathVariable int courseId) {
         //YOUR CODE STARTS HERE
 
-
+        studentServiceImpl.addStudentToCourse(studentId, courseId);
 
         //YOUR CODE ENDS HERE
     }
