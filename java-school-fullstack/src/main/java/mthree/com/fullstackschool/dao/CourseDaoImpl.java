@@ -1,7 +1,6 @@
 package mthree.com.fullstackschool.dao;
 
 import mthree.com.fullstackschool.dao.mappers.CourseMapper;
-import mthree.com.fullstackschool.dao.mappers.StudentMapper;
 import mthree.com.fullstackschool.model.Course;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
